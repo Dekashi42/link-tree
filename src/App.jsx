@@ -88,8 +88,8 @@ export default function App() {
                   <div className="w-36 h-36 rounded-full overflow-hidden bg-gradient-to-tr from-indigo-500 to-pink-500 flex items-center justify-center text-white text-4xl font-bold">K</div>
                   <span className="online-dot" aria-hidden></span>
                 </div>
-                <h2 className="text-2xl font-bold neon">Kenaki</h2>
-                <p className="muted-3 mt-2">Designer & Developer — accessible links and resources</p>
+                <h2 className="text-2xl font-bold neon">Emmilio</h2>
+                <p className="muted-3 mt-2"> accessible links and resources</p>
 
                 <div className="mt-6 w-full">
                   <div className="sep"></div>
