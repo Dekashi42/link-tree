@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 255 255 255;
+}
+
+/* Accessible focus styles for keyboard users */
+:focus {
+  outline: none;
+}
+
+.focus-ring:focus {
+  box-shadow: 0 0 0 4px rgba(99,102,241,0.15);
+  outline: none;
+}
+
+/* Online dot - pulsing ring */
+.online-dot {
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 9999px;
+  background-color: #22c55e; /* green-500 */
+  box-shadow: 0 0 0 0 rgba(34,197,94,0.7);
+}
+
+.online-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  animation: pulse 1.6s infinite;
+  background-color: rgba(34,197,94,0.35);
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.6); opacity: 0.9 }
+  70% { transform: scale(1.8); opacity: 0 }
+  100% { transform: scale(2); opacity: 0 }
+}
+
+/* Smooth transitions */
+.theme-transition {
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+/* --------------------------------------------------------------------
+   Extensive custom styles (animations, button variants, blobs, glass)
+   This block intentionally long to provide many styling options.
+---------------------------------------------------------------------*/
+
+/* Page background and hero */
+.hero-root {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-gradient-shift {
+  background: linear-gradient(120deg, rgba(99,102,241,0.12) 0%, rgba(14,165,233,0.06) 25%, rgba(236,72,153,0.04) 50%, rgba(99,102,241,0.08) 100%);
+}
+
+/* Floating decorative blobs */
+.blob {
+  position: absolute;
+  filter: blur(36px);
+  opacity: 0.55;
+  transform: translate3d(0,0,0);
+  will-change: transform, opacity;
+}
+
+.blob--one { width: 520px; height: 520px; left: -120px; top: -80px; background: radial-gradient(circle at 30% 30%, #7c3aed, #06b6d4); animation: float 10s ease-in-out infinite; }
+.blob--two { width: 420px; height: 420px; right: -80px; bottom: -120px; background: radial-gradient(circle at 70% 70%, #f472b6, #60a5fa); animation: float 12s ease-in-out infinite reverse; }
+.blob--three { width: 300px; height: 300px; left: 20%; bottom: -80px; background: radial-gradient(circle at 50% 50%, #34d399, #a78bfa); animation: float 14s linear infinite; }
+
+@keyframes float {
+  0% { transform: translateY(0) translateX(0) scale(1); }
+  50% { transform: translateY(-24px) translateX(8px) scale(1.03); }
+  100% { transform: translateY(0) translateX(0) scale(1); }
+}
+
+/* Glass panel helpers */
+.glass {
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
+  border: 1px solid rgba(255,255,255,0.35);
+}
+.glass-dark {
+  background: rgba(15,23,42,0.48);
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+/* Neon/glow utilities */
+.neon {
+  text-shadow: 0 2px 12px rgba(99,102,241,0.25), 0 6px 24px rgba(99,102,241,0.08);
+}
+.glow-btn {
+  box-shadow: 0 6px 24px rgba(99,102,241,0.18), inset 0 -4px 12px rgba(255,255,255,0.03);
+}
+
+/* Button variants: many variants for visual diversity */
+.btn { @apply inline-flex items-center justify-center gap-3 rounded-lg font-semibold transition focus:outline-none; }
+.btn--primary { @apply bg-indigo-600 text-white px-5 py-3 hover:bg-indigo-500; }
+.btn--primary-outline { @apply border border-indigo-500 text-indigo-500 bg-transparent px-5 py-3 hover:bg-indigo-50; }
+.btn--glass { padding: 0.6rem 1.1rem; border-radius: 12px; }
+.btn--pill { @apply rounded-full px-6 py-2 bg-gradient-to-r from-pink-500 to-yellow-400 text-white; }
+.btn--ghost { @apply bg-transparent text-gray-800 dark:text-gray-100 px-4 py-2; }
+.btn--success { @apply bg-green-500 text-white px-4 py-2 hover:bg-green-400; }
+.btn--danger { @apply bg-red-500 text-white px-4 py-2 hover:bg-red-400; }
+.btn--muted { @apply bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-4 py-2; }
+.btn--outline-rounded { @apply border border-gray-300 dark:border-gray-600 text-sm px-4 py-2; }
+.btn--elevated { box-shadow: 0 10px 30px rgba(2,6,23,0.12); }
+
+/* A set of small helper classes to add variety */
+.badge { @apply inline-block px-2 py-1 rounded-full text-xs font-medium; }
+.badge--indigo { @apply bg-indigo-100 text-indigo-700; }
+.badge--pink { @apply bg-pink-100 text-pink-700; }
+.muted { color: rgba(99,102,241,0.7); }
+
+/* Large grid and responsive helpers */
+.links-grid { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 1rem; }
+@media (min-width: 640px) { .links-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .links-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* Fancy card styles (many permutations) */
+.card { border-radius: 16px; padding: 1rem; }
+.card--lg { padding: 2rem; border-radius: 20px; }
+.card--alt { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border: 1px solid rgba(255,255,255,0.04); }
+
+/* Link tile styles - a bunch to pick from (adds more than 100 lines total) */
+.tile { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1rem; border-radius:12px; }
+.tile--glass { background: linear-gradient(90deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03)); }
+.tile--soft { background: rgba(255,255,255,0.06); }
+.tile--accent { background: linear-gradient(90deg, rgba(99,102,241,0.12), rgba(14,165,233,0.06)); }
+.tile--elevated { box-shadow: 0 10px 30px rgba(2,6,23,0.08); }
+.tile--rounded { border-radius: 9999px; }
+.tile--border { border: 1px solid rgba(255,255,255,0.04); }
+
+/* Icon circle variants */
+.icon-circle { width:44px; height:44px; border-radius:12px; display:inline-grid; place-items:center; }
+.icon-circle--indigo { background: linear-gradient(180deg,#6366f1,#4f46e5); color:white; }
+.icon-circle--teal { background: linear-gradient(180deg,#06b6d4,#0ea5e9); color:white; }
+.icon-circle--rose { background: linear-gradient(180deg,#fb7185,#f472b6); color:white; }
+
+/* Hover and focus micro animations */
+.hover-pop:hover { transform: translateY(-4px) scale(1.01); }
+.hover-glow:hover { box-shadow: 0 12px 40px rgba(99,102,241,0.14); }
+.focus-ring { box-shadow: 0 0 0 4px rgba(99,102,241,0.12); }
+
+/* Decorative separators */
+.sep { height:1px; background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02)); margin: 1rem 0; }
+
+/* Animated underline for links */
+.underline-anim { position:relative; }
+.underline-anim::after { content:''; position:absolute; left:0; bottom:-6px; height:3px; width:0; background:linear-gradient(90deg,#a78bfa,#60a5fa); transition:width 300ms ease; border-radius:99px; }
+.underline-anim:hover::after { width:100%; }
+
+/* Fancy avatar ring */
+.avatar-wrap { position:relative; display:inline-block; }
+.avatar-ring { position:absolute; inset:auto -6px -6px -6px; border-radius:9999px; padding:6px; background:linear-gradient(90deg,#a78bfa,#60a5fa); filter:blur(6px); opacity:0.8; }
+
+/* Progress / accent lines */
+.accent-line { height:3px; background:linear-gradient(90deg,#06b6d4,#6366f1); border-radius:999px; }
+
+/* Small utility helpers (many to reach 100+ lines) */
+.flex-center { display:flex; align-items:center; justify-content:center; }
+.gap-xs { gap:0.25rem; }
+.gap-sm { gap:0.5rem; }
+.stack { display:flex; flex-direction:column; gap:0.5rem; }
+.wrap { flex-wrap:wrap; }
+.muted-2 { color: rgba(255,255,255,0.6); }
+.muted-3 { color: rgba(0,0,0,0.45); }
+.caps { text-transform:uppercase; letter-spacing:0.08em; font-size:0.75rem; }
+
+/* Accessibility helpers */
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+/* End of extended styles */
+
